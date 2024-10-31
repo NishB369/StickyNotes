@@ -1,36 +1,63 @@
-const notesContainer = document.querySelector("#app")
-const addNoteButton = document.querySelector(".add-note")
+const notesContainer = document.getElementById("app");
+const addNoteButton = notesContainer.querySelector(".add-note");
 
-function getNotes(){
-    JSON.parse(localStorage.getItem("stickynotes-notes") || "[]")
+getNotes().forEach((note) => {
+  const noteElement = createNoteElement(note.id, note.content);
+  notesContainer.insertBefore(noteElement, addNoteButton);
+});
+
+addNoteButton.addEventListener("click", () => addNote());
+
+function getNotes() {
+  return JSON.parse(localStorage.getItem("stickynotes-notes") || "[]");
 }
 
-function saveNotes(notes){
-    localStorage.setItem("stickynotes-notes", JSON.stringify(notes))
+function saveNotes(notes) {
+  localStorage.setItem("stickynotes-notes", JSON.stringify(notes));
 }
 
-function createNoteElement(id, content){
-    const elem = document.createElement("textarea")
-    elem.classList.add("note")
-    elem.value=content
-    elem.placeholder="Add Data to Sticky Note"
+function createNoteElement(id, content) {
+  const element = document.createElement("textarea");
 
-    elem.addEventListener("change", ()=>{
-        updateNote(id,elem.value)
-    })
+  element.classList.add("note");
+  element.value = content;
+  element.placeholder = "Empty Sticky Note";
 
-    return elem
+  element.addEventListener("change", () => {
+    updateNote(id, element.value);
+  });
 
+  element.addEventListener("dblclick", () => {
+    const doDelete = confirm(
+      "Are you sure you wish to delete this sticky note?"
+    );
+
+    if (doDelete) {
+      deleteNote(id, element);
+    }
+  });
+
+  return element;
 }
 
-function addNote(){
+function addNote() {
+  const notes = getNotes();
+  const noteObject = {
+    id: Math.floor(Math.random() * 100000),
+    content: ""
+  };
 
+  const noteElement = createNoteElement(noteObject.id, noteObject.content);
+  notesContainer.insertBefore(noteElement, addNoteButton);
+
+  notes.push(noteObject);
+  saveNotes(notes);
 }
 
-function updateNote(){
-
+function updateNote(id, newContent) {
+  
 }
 
-function deleteNote(){
-
+function deleteNote(id, element) {
+  
 }
