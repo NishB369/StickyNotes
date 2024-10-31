@@ -5,8 +5,8 @@ function getNotes(){
     JSON.parse(localStorage.getItem("stickynotes-notes") || "[]")
 }
 
-function saveNotes(){
-
+function saveNotes(notes){
+    localStorage.setItem("stickynotes-notes", JSON.stringify(notes))
 }
 
 function createNoteElement(id, content){
