@@ -10,6 +10,16 @@ function saveNotes(notes){
 }
 
 function createNoteElement(id, content){
+    const elem = document.createElement("textarea")
+    elem.classList.add("note")
+    elem.value=content
+    elem.placeholder="Add Data to Sticky Note"
+
+    elem.addEventListener("change", ()=>{
+        updateNote(id,elem.value)
+    })
+
+    return elem
 
 }
 
