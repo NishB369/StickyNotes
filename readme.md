@@ -42,11 +42,11 @@ To view this project locally, follow these steps:
 * Or you can directly have a look at [link](https://sticky---notes.vercel.app/).
 
 ## Screenshots
-![alt text](/sn1.png)
-![alt text](/sn2.png)
-![alt text](/sn3.png)
-![alt text](/sn4.png)
-![alt text](/sn5.png)
+![alt text](/media/sn1.png)
+![alt text](/media/sn2.png)
+![alt text](/media/sn3.png)
+![alt text](/media/sn4.png)
+![alt text](/media/sn5.png)
 
 ## Contact
 * For any inquiries or feedback, feel free to reach out:
